@@ -23,7 +23,7 @@
 
 - **Visual Range Creation**: Select code and create NVTX ranges directly in VS Code
 - **Persistent Workspace Storage**: Ranges are saved per project and can be toggled on/off
-- **Clear Visual Indicators**: See exactly where your profiling ranges start and end
+- **Clear Visual Indicators**: See exactly where your profiling ranges start and end through colored annotations
 - **Non-Intrusive Workflow**: Profile without changing your source code
 - **Standalone CLI Tool**: Run profiling from command line with `njkt`
 - **PyTorch Integration**: Works seamlessly with CUDA NVTX and Nsight Systems
