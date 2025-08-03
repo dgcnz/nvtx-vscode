@@ -1,26 +1,32 @@
 # NVTX Range Manager
 
 <p align="center">
-<img src="media/logo.png" width=200>
-</br>
+  <img src="media/logo.png" width="200" alt="NVTX Range Manager Logo">
+</p>
 
 <p align="center">
- <img src="media/demo.gif"/>
-</p>
+  <img src="https://img.shields.io/badge/release-v0.0.1-green" alt="Release"/>
+  <img src="https://img.shields.io/badge/license-MIT-blue" alt="License"/>
 </p>
 
+<p align="center">
+  <strong>Visual GPU profiling for Python developers</strong><br>
+  Create NVIDIA NVTX ranges directly in VS Code, then profile with Nsight Systems without modifying source code.
+</p>
 
-VS Code extension for creating NVIDIA NVTX profiling ranges in Python code. Mark regions visually, then profile with NVIDIA Nsight Systems without modifying source files.
+<p align="center">
+  <img src="media/demo.gif" alt="NVTX Range Manager Demo" width="800">
+</p>
+
 
 ## Features
 
-- **Visual Range Creation**: Select Python code in VS Code and instantly create NVTX profiling ranges
-- **Persistent Range Management**: Ranges are saved in your workspace and can be enabled/disabled as needed
-- **Code Decorations**: Visual indicators clearly mark range boundaries in your editor
-- **Non-Intrusive Profiling**: Transform code at runtime without modifying source files
-- **Standalone CLI Tool**: Profile code independently using the `njkt` command-line tool
-- **Seamless Integration**: Works with PyTorch's CUDA NVTX bindings and NVIDIA Nsight Systems
-- **Context Manager Injection**: Automatically wraps marked regions with `torch.cuda.nvtx.range` statements
+- **Visual Range Creation**: Select code and create NVTX ranges directly in VS Code
+- **Persistent Workspace Storage**: Ranges are saved per project and can be toggled on/off
+- **Clear Visual Indicators**: See exactly where your profiling ranges start and end
+- **Non-Intrusive Workflow**: Profile without changing your source code
+- **Standalone CLI Tool**: Run profiling from command line with `njkt`
+- **PyTorch Integration**: Works seamlessly with CUDA NVTX and Nsight Systems
 
 ## Quick Start
 
@@ -34,13 +40,9 @@ VS Code extension for creating NVIDIA NVTX profiling ranges in Python code. Mark
    pip install git+https://github.com/dgcnz/nvtx-vscode.git#subdirectory=py
    ```
 3. **Create profiling ranges**: Select Python code in VS Code and run "NVTX: Create Range from Selection"
-4. **Execute with profiling**: Run your transformed code:
+4. **Execute with profiling**: Run, profile and dynamically inject nvtx ranges (preferrably with `uv run`):
    ```bash
-   njkt your_script.py
-   ```
-5. **Profile with NVIDIA tools**:
-   ```bash
-   nsys profile njkt your_script.py
+   nsys profile uv run njkt your_script.py
    ```
 
 ## Requirements
@@ -50,7 +52,7 @@ VS Code extension for creating NVIDIA NVTX profiling ranges in Python code. Mark
 - **VS Code 1.87.0+** for the extension
 - **`njkt` CLI tool** (installed separately via pip/uv)
 
-## Architecture
+## Structure
 
 The project consists of two main components:
 
@@ -76,6 +78,6 @@ njkt --ranges custom_ranges.json script.py
 # Debug transformation (output transformed code)
 njkt --transform-only --output transformed.py script.py
 
-# Full profiling pipeline
-nsys profile njkt script.py
+# Full profiling
+nsys profile uv run njkt script.py
 ```
