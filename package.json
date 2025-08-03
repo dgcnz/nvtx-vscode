@@ -1,0 +1,137 @@
+{
+  "name": "nvtx-manager",
+  "displayName": "NVTX Range Manager",
+  "description": "Create and manage NVIDIA NVTX profiling ranges in Python code. Visualize performance markers and seamlessly integrate with NVIDIA Nsight Systems profiling tools.",
+  "version": "1.0.0",
+  "publisher": "dgcnz",
+  "author": {
+    "name": "Diego Canez"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dgcnz/nvtx-vscode"
+  },
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "nvtx-manager.createRangeFromSelection",
+        "title": "NVTX: Create Range from Selection"
+      },
+      {
+        "command": "nvtx-manager.refreshRanges",
+        "title": "NVTX: Refresh Ranges",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "nvtx-manager.deleteRange",
+        "title": "NVTX: Delete Range"
+      },
+      {
+        "command": "nvtx-manager.toggleEnableRange",
+        "title": "NVTX: Toggle Enable/Disable Range"
+      },
+      {
+        "command": "nvtx-manager.editRangeName",
+        "title": "NVTX: Edit Range Name"
+      },
+      {
+        "command": "nvtx-manager.navigateToRange",
+        "title": "NVTX: Navigate to Range"
+      },
+      {
+        "command": "nvtx-manager.toggleDecorations",
+        "title": "NVTX: Toggle Decorations"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "nvtx-manager-view-container",
+          "title": "NVTX Manager",
+          "icon": "media/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "nvtx-manager-view-container": [
+        {
+          "id": "nvtxRangesView",
+          "name": "NVTX Ranges",
+          "contextualTitle": "NVTX Range Manager"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "nvtx-manager.refreshRanges",
+          "when": "view == nvtxRangesView",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "nvtx-manager.navigateToRange",
+          "when": "view == nvtxRangesView && viewItem == nvtxRangeItem",
+          "group": "navigation@1"
+        },
+        {
+          "command": "nvtx-manager.editRangeName",
+          "when": "view == nvtxRangesView && viewItem == nvtxRangeItem",
+          "group": "modification@1"
+        },
+        {
+          "command": "nvtx-manager.toggleEnableRange",
+          "when": "view == nvtxRangesView && viewItem == nvtxRangeItem",
+          "group": "modification@2"
+        },
+        {
+          "command": "nvtx-manager.deleteRange",
+          "when": "view == nvtxRangesView && viewItem == nvtxRangeItem",
+          "group": "modification@3"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "nvtx-manager.createRangeFromSelection",
+          "group": "nvtx@1",
+          "when": "editorHasSelection && editorLangId == python"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "nvtx-manager.toggleDecorations",
+        "key": "ctrl+shift+t"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.87.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9",
+    "globals": "^15.0.0",
+    "typescript-eslint": "^7.5.0"
+  },
+  "activationEvents": []
+}

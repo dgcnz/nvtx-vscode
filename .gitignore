@@ -1,0 +1,10 @@
+node_modules
+.vscode
+dist
+**/__pycache__
+.vscode-test/
+.venv
+docs/
+examples/
+CLAUDE.md
+py/extrude_svg.py

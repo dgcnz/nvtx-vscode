@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "njkt"
+version = "0.1.1"
+description = "NVTX code transformation tool for GPU profiling"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    {name = "Diego Canez", email = "canezdiego@gmail.com"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "torch",
+]
+
+[project.scripts]
+njkt = "njkt.runner:main"
+
+[project.urls]
+Homepage = "https://github.com/dgcnz/nvtx-vscode"
+Repository = "https://github.com/dgcnz/nvtx-vscode.git"
